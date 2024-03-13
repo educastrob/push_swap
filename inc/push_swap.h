@@ -6,7 +6,7 @@
 /*   By: educastro <educastro@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 15:43:54 by educastro         #+#    #+#             */
-/*   Updated: 2024/03/13 05:31:41 by educastro        ###   ########.fr       */
+/*   Updated: 2024/03/13 19:25:04 by educastro        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,11 @@ struct	s_values
 # endif
 
 // check_args.c
-void	check_args_list(char **args_list, enum e_boolean is_split);
-void	free_args_list(char **args_list, enum e_boolean is_split);
+void			check_args_list(char **args_list, enum e_boolean is_split);
+void			free_args_list(char **args_list, enum e_boolean is_split);
 // stack_utils.c
+void			init_stacks(t_stack *a, t_stack *b, char **args_list);
+enum e_boolean	stack_is_sorted(t_stack *stack);
+void			free_nodes(t_node *top_node);
 
 #endif

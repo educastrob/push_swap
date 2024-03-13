@@ -6,7 +6,7 @@
 #    By: educastro <educastro@student.42.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/22 15:49:20 by educastro         #+#    #+#              #
-#    Updated: 2024/03/13 04:28:54 by educastro        ###   ########.fr        #
+#    Updated: 2024/03/13 19:30:34 by educastro        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,9 +17,8 @@ CFLAGS = -Wall -Wextra -Werror -g3 -fsanitize=address
 
 AR = ar -rc
 
-SRCS_DIR = ./srcs/operations \
+SRCS_DIR = ./srcs/algorithms \
 		   ./srcs/utils \
-		   ./srcs/algorithms \
 
 OBJS_DIR = ./objs
 INC_DIR = ./inc
@@ -27,21 +26,9 @@ LIBFT_DIR = ./libft
 LIBFT = libft.a
 BONUS_DIR = ./checker_bonus
 
-# SRCS = ./srcs/algorithms/main.c \
-# 	   ./srcs/operations/push_pop.c \
-# 	   ./srcs/operations/reverse_rotate_stack.c \
-# 	   ./srcs/operations/swap.c \
-# 	   ./srcs/utils/check_utils.c \
-# 	   ./srcs/utils/free.c \
-# 	   ./srcs/utils/min_mid_max.c \
-# 	   ./srcs/utils/my_atoi.c \
-# 	   ./srcs/utils/stack_utils.c \
-# 	   ./srcs/algorithms/a_to_b.c \
-# 	   ./srcs/algorithms/b_to_a.c \
-# 	   ./srcs/algorithms/fives.c \
-# 	   ./srcs/algorithms/three_a.c \
-# 	   ./srcs/algorithms/three_b.c \
-# 	   ./srcs/algorithms/under_three.c
+SRCS = ./srcs/utils/check_args.c \
+	   ./srcs/utils/stack_utils.c \
+	   ./srcs/algorithms/push_swap.c 
 
 OBJS = $(addprefix $(OBJS_DIR)/, $(notdir $(SRCS:.c=.o)))
 
