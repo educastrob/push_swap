@@ -6,7 +6,7 @@
 /*   By: educastro <educastro@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 16:20:07 by educastro         #+#    #+#             */
-/*   Updated: 2024/03/13 19:26:44 by educastro        ###   ########.fr       */
+/*   Updated: 2024/03/13 19:39:05 by educastro        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,6 @@ int		main(int argc, char **argv)
 		args_list = argv[1];
 	check_args_list(args_list, is_split);
 	init_stacks(&a, &b, args_list);
+	free_args_list(args_list, is_split);
+	free_nodes(a.top);
 }
