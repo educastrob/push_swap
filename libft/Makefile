@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: edcastro <edcastro@student.42.fr>          +#+  +:+       +#+         #
+#    By: educastro <educastro@student.42.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/04 10:03:03 by edcastro          #+#    #+#              #
-#    Updated: 2023/11/04 10:03:03 by edcastro         ###   ########.fr        #
+#    Updated: 2024/03/13 05:02:08 by educastro        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,8 @@ SRC 	:= $(SRCDIR)/ft_isalpha.c $(SRCDIR)/ft_isdigit.c $(SRCDIR)/ft_isalnum.c \
 		$(SRCDIR)/ft_lstsize.c $(SRCDIR)/ft_lstlast.c $(SRCDIR)/ft_lstadd_back.c \
 		$(SRCDIR)/ft_lstdelone.c $(SRCDIR)/ft_lstclear.c $(SRCDIR)/ft_lstiter.c \
 		$(SRCDIR)/ft_lstmap.c $(SRCDIR)/get_next_line.c $(SRCDIR)/get_next_line_utils.c \
-		$(SRCDIR)/ft_minmax.c
+		$(SRCDIR)/ft_minmax.c $(SRCDIR)/ft_swap.c $(SRCDIR)/ft_operate.c $(SRCDIR)/ft_atol.c \
+		$(SRCDIR)/ft_sort_int_arr.c $(SRCDIR)/ft_handle_error.c $(SRCDIR)/ft_for_each.c 
 OBJ		:= $(patsubst $(SRCDIR)/%.c, $(OBJDIR)/%.o, $(SRC))
 NAME	:= libft.a
 PRINTFDIR	:=	Printf

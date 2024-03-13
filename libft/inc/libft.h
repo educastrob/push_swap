@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edcastro <edcastro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: educastro <educastro@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 10:01:55 by edcastro          #+#    #+#             */
-/*   Updated: 2023/11/04 10:01:55 by edcastro         ###   ########.fr       */
+/*   Updated: 2024/03/13 05:00:02 by educastro        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
+# include <errno.h>
 # include <stddef.h>
 # include <stdlib.h>
 # include <unistd.h>
@@ -95,5 +96,20 @@ void	*free_strs(char **buffer, char *line);
 void	update_buffer(char *buffer);
 /*	ft_printf	*/
 int		ft_printf(const char *format, ...);
+/* push_swap	*/
+long	ft_atol(const char *nptr);
+int		ft_operate(int nbr1, int nbr2, char operate);
+void	ft_sort_int_arr(int *arr, size_t size);
+void	ft_swap(int *nbr1, int *nbr2);
+void	ft_handle_error(const char *message);
+void	ft_for_each(void **array, void (*f)(void *));
+
+# ifndef MIN
+#  define MIN 0b0
+# endif //MIN
+
+# ifndef MAX
+#  define MAX 0b1
+# endif //MAX
 
 #endif
