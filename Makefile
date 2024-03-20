@@ -6,7 +6,7 @@
 #    By: educastro <educastro@student.42.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/22 15:49:20 by educastro         #+#    #+#              #
-#    Updated: 2024/03/13 19:30:34 by educastro        ###   ########.fr        #
+#    Updated: 2024/03/13 20:00:41 by educastro        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,7 @@ BONUS_DIR = ./checker_bonus
 
 SRCS = ./srcs/utils/check_args.c \
 	   ./srcs/utils/stack_utils.c \
+	   ./srcs/utils/operations.c \
 	   ./srcs/algorithms/push_swap.c 
 
 OBJS = $(addprefix $(OBJS_DIR)/, $(notdir $(SRCS:.c=.o)))
