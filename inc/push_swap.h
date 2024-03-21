@@ -6,7 +6,7 @@
 /*   By: educastro <educastro@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 15:43:54 by educastro         #+#    #+#             */
-/*   Updated: 2024/03/13 19:34:49 by educastro        ###   ########.fr       */
+/*   Updated: 2024/03/21 14:11:16 by educastro        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,5 +78,10 @@ void			free_args_list(char **args_list, enum e_boolean is_split);
 void			init_stacks(t_stack *a, t_stack *b, char **args_list);
 enum e_boolean	stack_is_sorted(t_stack *stack);
 void			free_nodes(t_node *top_node);
+// operations.c
+void	push(t_stack *a, t_stack *b);
+void	swap(t_stack *a);
+void	reverse_rotate(t_stack *a);
+void	rotate(t_stack *a);
 
 #endif
