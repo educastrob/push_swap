@@ -5,76 +5,154 @@
 #                                                     +:+ +:+         +:+      #
 #    By: educastro <educastro@student.42.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/01/22 15:49:20 by educastro         #+#    #+#              #
-#    Updated: 2024/04/23 03:59:49 by educastro        ###   ########.fr        #
+#    Created: 2024/01/22 15:43:54 by educastro         #+#    #+#              #
+#    Updated: 2024/04/23 05:35:09 by educastro        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = push_swap
+# Variables
+NAME					:= push_swap
+CHECKER					:= checker
 
-CC = gcc
-CFLAGS = -Wall -Wextra -Werror -g3 -fsanitize=address
+SOURCES_DIR				:= sources/
+SHARED_DIR				:= $(SOURCES_DIR)shared/
+PUSH_SWAP_DIR			:= $(SOURCES_DIR)push_swap/
+CHECKER_DIR				:= $(SOURCES_DIR)checker/
+OBJECTS_DIR				:= objects/
+SHARE_OBJECTS_DIR		:= $(OBJECTS_DIR)shared/
+PUSH_SWAP_OBJECTS_DIR	:= $(OBJECTS_DIR)push_swap/
+CHECKER_OBJECTS_DIR		:= $(OBJECTS_DIR)checker/
+HEADERS_DIR				:= includes/
+LIBRARIES_DIR			:= libraries/
+LIBFT_DIR				:= $(addprefix $(LIBRARIES_DIR), libft/)
+LIBFT_FILE 				:= libft.a
 
-AR = ar -rc
+MAKE					:= make
+MAKE_LIBS				:= $(MAKE) -sC
+CC						:= cc
+CFLAGS					:= -Wall -Wextra -Werror -Wunreachable-code -Ofast -g3 -O3
+MKDIR					:= mkdir -p
+RM						:= rm -rf
 
-SRCS_DIR = ./srcs/algorithms \
-		   ./srcs/utils \
+# Sources
+SHARED_FILES			:= check_args_list handle_stacks stack_movements
+PUSH_SWAP_FILES			:= apply_move five_sort get_values push_rotates push_swap reorder_rr small_sort sort_stack three_sort_utils
+CHECKER_FILES			:= checker read_moves
+SHARED_SOURCES			:= $(addprefix $(SHARED_DIR), $(addsuffix .c, $(SHARED_FILES)))
+PUSH_SWAP_SOURCES		:= $(addprefix $(PUSH_SWAP_DIR), $(addsuffix .c, $(PUSH_SWAP_FILES)))
+CHECKER_SOURCES			:= $(addprefix $(CHECKER_DIR), $(addsuffix .c, $(CHECKER_FILES)))
+SOURCES					:= $(SHARED_SOURCES) $(PUSH_SWAP_SOURCES)
+BONUS_SOURCES			:= $(SHARED_SOURCES) $(CHECKER_SOURCES)
+SHARED_OBJECTS			:= $(addprefix $(SHARE_OBJECTS_DIR), $(addsuffix .o, $(SHARED_FILES)))
+PUSH_SWAP_OBJECTS		:= $(addprefix $(PUSH_SWAP_OBJECTS_DIR), $(addsuffix .o, $(PUSH_SWAP_FILES)))
+CHECKER_OBJECTS			:= $(addprefix $(CHECKER_OBJECTS_DIR), $(addsuffix .o, $(CHECKER_FILES)))
+OBJECTS					:= $(SHARED_OBJECTS) $(PUSH_SWAP_OBJECTS)
+BONUS_OBJECTS			:= $(SHARED_OBJECTS) $(CHECKER_OBJECTS)
+LIBFT					:= $(addprefix $(LIBFT_DIR), $(LIBFT_FILE))
+LIBFT_HEADER			:= $(addprefix $(LIBFT_DIR), includes/libft.h)
+HEADERS					:= -I $(HEADERS_DIR)
 
-OBJS_DIR = ./objs
-INC_DIR = ./inc
-LIBFT_DIR = ./libft
-LIBFT = libft.a
-BONUS_DIR = ./checker_bonus
+# Colors
+RED   					:= \033[0;31m
+GREEN  					:= \033[0;32m
+RESET  		 			:= \033[0m
 
-SRCS = ./srcs/utils/check_args.c \
-	   ./srcs/utils/stack_utils.c \
-	   ./srcs/utils/operations.c \
-	   ./srcs/algorithms/push_swap.c \
-	   ./srcs/algorithms/apply_move.c \
-	   ./srcs/algorithms/get_values.c \
-	   ./srcs/algorithms/small_sort.c \
-	   ./srcs/algorithms/sort_stack.c \
-	   ./srcs/algorithms/three_sort_utils.c \
-	   ./srcs/algorithms/five_sort.c \
-	   ./srcs/algorithms/push_rotates.c \
-	   ./srcs/algorithms/reorder_rr.c \
+# Rules
+.PHONY: all clean fclean re
 
-OBJS = $(addprefix $(OBJS_DIR)/, $(notdir $(SRCS:.c=.o)))
+all:
+	@$(MAKE) -s libraries
+	@if [ ! -f $(NAME) ]; then \
+		$(MAKE) -s $(NAME); \
+		if [ -f $(NAME) ]; then \
+    		printf "$(GREEN)Compiled $(NAME) successfully!$(RESET)\n"; \
+    	else \
+    		printf "$(RED)$(NAME) is not compiled yet!$(RESET)\n"; \
+		fi \
+    else \
+    	printf "$(RED)$(NAME) is already compiled!$(RESET)\n"; \
+    fi
 
-vpath %.c $(SRCS_DIR)
+$(NAME): $(OBJECTS) $(PUSH_SWAP_OBJECTS)
+	@$(CC) $(CFLAGS) $^ $(LIBFT) -o $(NAME) $(INCLUDES);
 
-RM = rm -f
+cleanlibft:
+	@$(MAKE_LIBS) $(LIBFT_DIR) clean
 
-all : $(NAME)
+fcleanlibft:
+	@$(MAKE_LIBS) $(LIBFT_DIR) fclean
 
-bonus : re
-	echo "Compiling bonus checker..."
-	@$(MAKE) fclean -C $(BONUS_DIR)
-	@$(MAKE) -C $(BONUS_DIR)
-	@cp checker_bonus/checker ./checker
-	echo "bonus checker has been compiled..."
+clean:
+	@if [ -f $(NAME) ]; then \
+		$(MAKE) -s cleanlibft; \
+	else \
+		printf "$(RED)$(LIBFT_FILE) is not compiled yet!$(RESET)\n"; \
+	fi
+	@if [ -d $(OBJECTS_DIR) ]; then \
+		$(RM) $(OBJECTS_DIR); \
+		printf "$(GREEN)Cleaned objects from $(NAME) successfully!$(RESET)\n"; \
+	else \
+		printf "$(RED)Objects from $(NAME) are already cleaned!$(RESET)\n"; \
+	fi
+	@if [ -f $(CHECKER) ]; then \
+		$(MAKE) -s cleanlibft; \
+	else \
+		printf "$(RED)$(LIBFT_FILE) is not compiled yet!$(RESET)\n"; \
+	fi
+	@if [ -d $(CHECKER_OBJECTS_DIR) ]; then \
+		$(RM) $(CHECKER_OBJECTS_DIR); \
+		printf "$(GREEN)Cleaned objects from $(CHECKER) successfully!$(RESET)\n"; \
+	else \
+		printf "$(RED)Objects from $(CHECKER) are already cleaned!$(RESET)\n"; \
+	fi
 
-$(NAME) : $(OBJS)
-	echo "Compling libft..."
-	@$(MAKE) -C $(LIBFT_DIR)
-	echo "Libft has been compiled..."
-	echo "Compiling push_swap"
-	@$(CC) $(CFLAGS) -o $@ $^ -L$(LIBFT_DIR) -lft
-	echo "push_swap has been compiled..."
+fclean: clean fcleanlibft
+	@if [ -f $(NAME) ]; then \
+		$(RM) $(NAME); \
+		printf "$(GREEN)Removed $(NAME) file successfully!$(RESET)\n"; \
+	else \
+		printf "$(RED)File $(NAME) is already removed!$(RESET)\n"; \
+	fi
+	@if [ -f $(CHECKER) ]; then \
+		$(RM) $(CHECKER); \
+		printf "$(GREEN)Removed $(CHECKER) file successfully!$(RESET)\n"; \
+	else \
+		printf "$(RED)File $(CHECKER) is already removed!$(RESET)\n"; \
+	fi
 
-$(OBJS_DIR) :
-	@mkdir -p $(OBJS_DIR)
+re: fclean
+	@$(MAKE) -s
 
-$(OBJS_DIR)/%.o : %.c | $(OBJS_DIR)
-	@$(CC) $(CFLAGS) -o $@ -I $(INC_DIR) -I$(LIBFT_DIR) -c $^
+bonus:
+	@$(MAKE) -s libraries
+	@if [ ! -f $(CHECKER) ]; then \
+		$(MAKE) -s $(CHECKER); \
+		if [ -f $(CHECKER) ]; then \
+    		printf "$(GREEN)Compiled $(CHECKER) successfully!$(RESET)\n"; \
+    	else \
+    		printf "$(RED)$(CHECKER) is not compiled yet!$(RESET)\n"; \
+		fi \
+    else \
+    	printf "$(RED)$(CHECKER) is already compiled!$(RESET)\n"; \
+    fi
 
-clean :
-	@$(MAKE) -C $(LIBFT_DIR) fclean
-	@$(MAKE) -C checker_bonus fclean
-	@$(RM) -r $(OBJS_DIR)
+$(CHECKER): $(BONUS_OBJECTS) $(CHECKER_OBJECTS)
+	@$(CC) $(CFLAGS) $^ $(LIBFT) -o $(CHECKER) $(INCLUDES);
 
-fclean : clean
-	@$(RM) $(NAME)
-	@if [ -f ./checker ]; then $(RM) ./checker; fi;
+$(SHARED_OBJECTS): $(SHARE_OBJECTS_DIR)%.o: $(SHARED_DIR)%.c
+	@$(MKDIR) $(OBJECTS_DIR) $(SHARE_OBJECTS_DIR)
+	@$(CC) $(CFLAGS) -c $< -o $@
 
-re : fclean all
+$(PUSH_SWAP_OBJECTS): $(PUSH_SWAP_OBJECTS_DIR)%.o: $(PUSH_SWAP_DIR)%.c
+	@$(MKDIR) $(OBJECTS_DIR) $(PUSH_SWAP_OBJECTS_DIR)
+	@$(CC) $(CFLAGS) -c $< -o $@
+
+$(CHECKER_OBJECTS): $(CHECKER_OBJECTS_DIR)%.o: $(CHECKER_DIR)%.c
+	@$(MKDIR) $(OBJECTS_DIR) $(CHECKER_OBJECTS_DIR)
+	@$(CC) $(CFLAGS) -c $< -o $@
+programs: all bonus
+
+libraries: $(LIBFT)
+
+$(LIBFT):
+	@$(MAKE_LIBS) $(LIBFT_DIR)
