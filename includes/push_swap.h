@@ -6,7 +6,7 @@
 /*   By: educastro <educastro@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 15:43:54 by educastro         #+#    #+#             */
-/*   Updated: 2024/04/23 05:30:29 by educastro        ###   ########.fr       */
+/*   Updated: 2024/04/23 05:58:07 by educastro        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 # include <limits.h>
 
 //Macros
+# define FALSE 0
+# define TRUE 1
 # define ERROR_MESSAGE "Error\n"
 # define A 0b1
 # define B 0b10
@@ -66,7 +68,7 @@ typedef struct s_rr
 # endif
 
 //Prototypes
-void	check_args_list(char **args_list, bool is_split);
+void	check_args_list(char **args_list, int is_split);
 void	push(t_stack *a, t_stack *b);
 void	swap(t_stack *a);
 void	rotate(t_stack *a);
@@ -83,11 +85,11 @@ void	two_sort(t_stack *a, t_stack *b, t_byte stack);
 void	push_rotate_a(t_stack *a, t_stack *b, t_values *values);
 void	push_rotate_b(t_stack *a, t_stack *b, t_values *values);
 void	reorder_rr(t_stack *a, t_stack *b, t_rr params, t_values *values);
-void	free_args_list(char **args_list, bool is_split);
+void	free_args_list(char **args_list, int is_split);
 void	init_stacks(t_stack *a, t_stack *b, char **args_list);
 void	free_nodes(t_node *top_node);
 void	read_moves(t_stack *a, t_stack *b);
-bool	stack_is_sorted(t_stack *stack);
+int		stack_is_sorted(t_stack *stack);
 int		get_min_value(t_stack *a, size_t stack_size);
 int		get_max_value(t_stack *a, size_t stack_size);
 

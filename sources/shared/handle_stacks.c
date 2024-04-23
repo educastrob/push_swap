@@ -6,7 +6,7 @@
 /*   By: educastro <educastro@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 15:43:54 by educastro         #+#    #+#             */
-/*   Updated: 2024/04/23 05:35:26 by educastro        ###   ########.fr       */
+/*   Updated: 2024/04/23 05:54:53 by educastro        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,20 +39,20 @@ void	init_stacks(t_stack *a, t_stack *b, char **args_list)
 	*b = (t_stack){0, NULL, NULL};
 }
 
-bool	stack_is_sorted(t_stack *stack)
+int		stack_is_sorted(t_stack *stack)
 {
 	t_node	temp_node;
 
 	if (!stack || !stack->top)
-		return (false);
+		return (FALSE);
 	temp_node = *stack->top;
 	while (temp_node.prev)
 	{
 		if (temp_node.value > temp_node.prev->value)
-			return (false);
+			return (FALSE);
 		temp_node = *temp_node.prev;
 	}
-	return (true);
+	return (TRUE);
 }
 
 void	free_nodes(t_node *top_node)

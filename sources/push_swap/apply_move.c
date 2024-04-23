@@ -6,13 +6,13 @@
 /*   By: educastro <educastro@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 15:43:54 by educastro         #+#    #+#             */
-/*   Updated: 2024/04/23 05:35:34 by educastro        ###   ########.fr       */
+/*   Updated: 2024/04/23 05:57:35 by educastro        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/push_swap.h"
 
-static bool	check_stacks(t_stack *a, t_stack *b, void *move, t_byte stacks);
+static int	check_stacks(t_stack *a, t_stack *b, void *move, t_byte stacks);
 static void	print_moves(void *move, t_byte stacks);
 
 void	apply_move(t_stack *a, t_stack *b, void *move, t_byte stacks)
@@ -36,7 +36,7 @@ void	apply_move(t_stack *a, t_stack *b, void *move, t_byte stacks)
 	print_moves(move, stacks);
 }
 
-static bool	check_stacks(t_stack *a, t_stack *b, void *move, t_byte stacks)
+static int	check_stacks(t_stack *a, t_stack *b, void *move, t_byte stacks)
 {
 	return (((move == push) && ((stacks == A && b->size < 1)
 				|| (stacks == B && a->size < 1)))

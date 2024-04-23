@@ -6,17 +6,17 @@
 /*   By: educastro <educastro@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 15:43:54 by educastro         #+#    #+#             */
-/*   Updated: 2024/04/23 05:35:30 by educastro        ###   ########.fr       */
+/*   Updated: 2024/04/23 05:56:15 by educastro        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/push_swap.h"
 
-static bool	args_are_numbers(char **temp_args_list);
-static bool	args_are_duplicates(char **args_list);
-static bool	args_are_integers(char **args_list);
+static int	args_are_numbers(char **temp_args_list);
+static int	args_are_duplicates(char **args_list);
+static int	args_are_integers(char **args_list);
 
-void	check_args_list(char **args_list, bool is_split)
+void	check_args_list(char **args_list, int is_split)
 {
 	if (!args_are_numbers(args_list) || args_are_duplicates(args_list)
 		|| !args_are_integers(args_list))
@@ -26,7 +26,7 @@ void	check_args_list(char **args_list, bool is_split)
 	}
 }
 
-static bool	args_are_numbers(char **args_list)
+static int	args_are_numbers(char **args_list)
 {
 	char	*temp_arg;
 
@@ -38,15 +38,15 @@ static bool	args_are_numbers(char **args_list)
 		while (*temp_arg)
 		{
 			if (!ft_isdigit(*temp_arg))
-				return (false);
+				return (FALSE);
 			temp_arg++;
 		}
 		args_list++;
 	}
-	return (true);
+	return (TRUE);
 }
 
-static bool	args_are_duplicates(char **args_list)
+static int	args_are_duplicates(char **args_list)
 {
 	size_t	index;
 	size_t	comp_len;
@@ -59,26 +59,26 @@ static bool	args_are_duplicates(char **args_list)
 			comp_len = ft_operate((int) ft_strlen(*args_list),
 					(int) ft_strlen(args_list[index]), MAX);
 			if (!ft_strncmp(*args_list, args_list[index], comp_len))
-				return (true);
+				return (TRUE);
 			index++;
 		}
 		args_list++;
 	}
-	return (false);
+	return (FALSE);
 }
 
-static bool	args_are_integers(char **args_list)
+static int	args_are_integers(char **args_list)
 {
 	while (*args_list)
 	{
 		if (ft_atol(*args_list) > INT_MAX || ft_atol(*args_list) < INT_MIN)
-			return (false);
+			return (FALSE);
 		args_list++;
 	}
-	return (true);
+	return (TRUE);
 }
 
-void	free_args_list(char **args_list, bool is_split)
+void	free_args_list(char **args_list, int is_split)
 {
 	if (is_split)
 	{
