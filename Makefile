@@ -6,7 +6,7 @@
 #    By: educastro <educastro@student.42.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/22 15:49:20 by educastro         #+#    #+#              #
-#    Updated: 2024/04/02 20:26:13 by educastro        ###   ########.fr        #
+#    Updated: 2024/04/23 03:59:49 by educastro        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,12 @@ SRCS = ./srcs/utils/check_args.c \
 	   ./srcs/algorithms/push_swap.c \
 	   ./srcs/algorithms/apply_move.c \
 	   ./srcs/algorithms/get_values.c \
-	   ./srcs/algorithms/small_sort.c 
+	   ./srcs/algorithms/small_sort.c \
+	   ./srcs/algorithms/sort_stack.c \
+	   ./srcs/algorithms/three_sort_utils.c \
+	   ./srcs/algorithms/five_sort.c \
+	   ./srcs/algorithms/push_rotates.c \
+	   ./srcs/algorithms/reorder_rr.c \
 
 OBJS = $(addprefix $(OBJS_DIR)/, $(notdir $(SRCS:.c=.o)))
 
