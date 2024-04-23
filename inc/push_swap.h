@@ -6,7 +6,7 @@
 /*   By: educastro <educastro@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 15:43:54 by educastro         #+#    #+#             */
-/*   Updated: 2024/04/02 20:24:44 by educastro        ###   ########.fr       */
+/*   Updated: 2024/04/23 03:56:50 by educastro        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,10 @@ struct	s_values
 {
 	int 	big_pivot;
 	int 	small_pivot;
-	size_t	ra;
-	size_t	rb;
-	size_t	pa;
-	size_t	pb;
+	size_t	rotate_a;
+	size_t	rotate_b;
+	size_t	push_a;
+	size_t	push_b;
 };
 
 struct s_rr
@@ -93,9 +93,26 @@ void	swap(t_stack *a);
 void	reverse_rotate(t_stack *a);
 void	rotate(t_stack *a);
 // get_values.c
-int	get_min_value(t_stack *a, size_t stack_size);
-int	get_max_value(t_stack *a, size_t stack_size);
+int		get_min_value(t_stack *a, size_t stack_size);
+int		get_max_value(t_stack *a, size_t stack_size);
 // apply_move.c
 void	apply_move(t_stack *a, t_stack *b, void *move, t_byte stacks);
+// small_sort.c
+void	small_sort(size_t size, t_stack *a, t_stack *b, t_byte stack);
+void	two_sort(t_stack *a, t_stack *b, t_byte stack);
+void	three_sort(t_stack *a, t_stack *b, t_byte s);
+// sort_stack.c
+void	sort_stack(size_t size, t_stack *a, t_stack *b, size_t iterations);
+// three_sort_utils.c
+void	top_min_sort(t_stack *a, t_stack *b, t_byte priority_stack, int n);
+void	mid_min_sort(t_stack *a, t_stack *b, t_byte priority_stack, int n);
+void	bot_min_sort(t_stack *a, t_stack *b, t_byte priority_stack, int n);
+// five_sort.c
+void	five_sort(t_stack *a, t_stack *b, t_byte priority_stack);
+// push_rotates.c
+void	push_rotate_a(t_stack *a, t_stack *b, t_values *values);
+void	push_rotate_b(t_stack *a, t_stack *b, t_values *values);
+// reorder_rr.c
+void	reorder_rr(t_stack *a, t_stack *b, t_rr params, t_values *values);
 
 #endif

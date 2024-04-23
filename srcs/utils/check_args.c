@@ -6,7 +6,7 @@
 /*   By: educastro <educastro@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 18:25:38 by educastro         #+#    #+#             */
-/*   Updated: 2024/03/13 05:30:29 by educastro        ###   ########.fr       */
+/*   Updated: 2024/04/22 17:41:18 by educastro        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	free_args_list(char **args_list, enum e_boolean is_split)
 {
 	if (is_split)
 	{
-		ft_for_each((void **) args_list, free());
+		ft_for_each((void **) args_list, free);
 		free(args_list);
 	}
 }
