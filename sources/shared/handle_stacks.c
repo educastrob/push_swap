@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_stacks.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: educastro <educastro@student.42.fr>        +#+  +:+       +#+        */
+/*   By: edcastro <edcastro@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 15:43:54 by educastro         #+#    #+#             */
-/*   Updated: 2024/04/23 05:54:53 by educastro        ###   ########.fr       */
+/*   Updated: 2024/04/23 22:18:40 by edcastro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	init_stacks(t_stack *a, t_stack *b, char **args_list)
 	*b = (t_stack){0, NULL, NULL};
 }
 
-int		stack_is_sorted(t_stack *stack)
+int	stack_is_sorted(t_stack *stack)
 {
 	t_node	temp_node;
 
