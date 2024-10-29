@@ -30,9 +30,11 @@ This project contains 2 programs:
 
 Compile checker: `make checker`
 
-Compile push_swap: `make push_swap`
+Compile push_swap: `make`
 
-Compile both: `make`
+Compile bonus: `make bonus`
+
+Compile both: `make programs`
 
 ## Execute
 
